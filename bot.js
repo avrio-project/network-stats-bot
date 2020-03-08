@@ -108,7 +108,7 @@ setInterval(() => {
         time = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} @ ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
         let hashrate = stats.hashrate;
 	let contentEmbed = new DiscordJS.RichEmbed()
-	if stats.hashrate / 1000 > 1000 {
+	if (stats.hashrate / 1000 > 1000) {
 		hashrate = (stats.hashrate / 1000) / 1000;
 		contentEmbed = new DiscordJS.RichEmbed()
             .setColor(msgColor)
@@ -127,7 +127,7 @@ setInterval(() => {
             .addField('Softfork number', stats.softFork)
             .addField('Hardfork number', stats.hardFork);
 	} else {
-		if stats.hashrate / 1000 > 1 {
+		if (stats.hashrate / 1000 > 1) {
 			hashrate = stats.hashrate / 1000;
 		contentEmbed = new DiscordJS.RichEmbed()
             .setColor(msgColor)
