@@ -4,25 +4,25 @@ const DiscordJS = require('discord.js');
 
 //------------------------  SETTINGS  -----------------------------------------------------//
 // ENTER THE BOT'S TOKEN HERE
-const discordToken = '<YOUR DISCORD TOKEN>';
+const discordToken = '';
 
 // ENTER THE IP ADDRESS OR URL OF THE DAEMON HERE, FOR EXAMPLE '127.0.0.1' FOR A LOCAL NODE
 const daemonHost = '127.0.0.1';
 
 // ENTER THE IP PORT OF THE DAEMON HERE, FOR EXAMPLE 64023 FOR JITBIT
-const daemonPort = 11898;
+const daemonPort = 24524;
 
 // ENTER THE COIN'S NAME HERE, FOR EXAMPLE 'TurtleCoin'
-const coinName = 'TurtleCoin';
+const coinName = 'Avrio';
 
 // ENTER THE COIN'S TICKER HERE, FOR EXAMPLE 'JBT' FOR 'JitBit'
-const coinTicker = 'TRTL';
+const coinTicker = 'AIO';
 
 // COIN DECIMAL DIVISOR
-const coinDivisor = 100;
+const coinDivisor = 10000;
 
 // ENTER THE LOGO'S URL HERE
-const logoURL = 'https://avatars3.githubusercontent.com/u/34389551?s=200&v=4';
+const logoURL = 'https://avatars1.githubusercontent.com/u/54186248?s=200&v=4';
 
 // ENTER A HEX COLOR OR A RGB ARRAY FOR CUSTOMIZATION
 const msgColor = '#4fc470';
@@ -31,7 +31,7 @@ const msgColor = '#4fc470';
 const msgChannel = 'network-stats';
 
 // ENTER THE INTERVAL HERE (IN MILLISECONDS)
-const checkInterval = 5000;
+const checkInterval = 10000;
 
 // SET TO TRUE IF BOT SHOULDN'T DELETE OLD STATISTICS
 const keepOldStats = false;
