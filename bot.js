@@ -106,15 +106,18 @@ setInterval(() => {
 
         now = new Date(Date.now());
         time = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} @ ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-
-        let contentEmbed = new DiscordJS.RichEmbed()
+        let hashrate = stats.hashrate;
+	let contentEmbed = new DiscordJS.RichEmbed()
+	if stats.hashrate / 1000 > 1000 {
+		hashrate = (stats.hashrate / 1000) / 1000;
+		contentEmbed = new DiscordJS.RichEmbed()
             .setColor(msgColor)
             .setTitle(`__**${coinName} network statistics**__`)
             .setDescription(`These are the network statistics of ${coinName}!`)
             .setThumbnail(logoURL)
             .setTimestamp()
             .addField('Height', `${stats.height} blocks`)
-            .addField('Hashrate', `${stats.hashrate} h/s`)
+            .addField('Hashrate', `${hashrate} mh/s`)
             .addField('Difficulty', stats.difficulty)
             .addField('Block reward', `${stats.reward} ${coinTicker}`)
             .addField('Last blockhash', stats.lastHash)
@@ -123,6 +126,46 @@ setInterval(() => {
             .addField('Pending transactions', `${stats.numTxnsPending} transaction(s)`)
             .addField('Softfork number', stats.softFork)
             .addField('Hardfork number', stats.hardFork);
+	} else {
+		if stats.hashrate / 1000 > 1 {
+			hashrate = stats.hashrate / 1000;
+		contentEmbed = new DiscordJS.RichEmbed()
+            .setColor(msgColor)
+            .setTitle(`__**${coinName} network statistics**__`)
+            .setDescription(`These are the network statistics of ${coinName}!`)
+            .setThumbnail(logoURL)
+            .setTimestamp()
+            .addField('Height', `${stats.height} blocks`)
+            .addField('Hashrate', `${hashrate} kh/s`)
+            .addField('Difficulty', stats.difficulty)
+            .addField('Block reward', `${stats.reward} ${coinTicker}`)
+            .addField('Last blockhash', stats.lastHash)
+            .addField('Timestamp of last block', stats.timestamp)
+            .addField('Transactions in last block', `${stats.numTxnsInside} transaction(s)`)
+            .addField('Pending transactions', `${stats.numTxnsPending} transaction(s)`)
+            .addField('Softfork number', stats.softFork)
+            .addField('Hardfork number', stats.hardFork);
+		}
+		else {
+			hashrate = stats.hashrate;
+		contentEmbed = new DiscordJS.RichEmbed()
+            .setColor(msgColor)
+            .setTitle(`__**${coinName} network statistics**__`)
+            .setDescription(`These are the network statistics of ${coinName}!`)
+            .setThumbnail(logoURL)
+            .setTimestamp()
+            .addField('Height', `${stats.height} blocks`)
+            .addField('Hashrate', `${hashrate} h/s`)
+            .addField('Difficulty', stats.difficulty)
+            .addField('Block reward', `${stats.reward} ${coinTicker}`)
+            .addField('Last blockhash', stats.lastHash)
+            .addField('Timestamp of last block', stats.timestamp)
+            .addField('Transactions in last block', `${stats.numTxnsInside} transaction(s)`)
+            .addField('Pending transactions', `${stats.numTxnsPending} transaction(s)`)
+            .addField('Softfork number', stats.softFork)
+            .addField('Hardfork number', stats.hardFork);
+		}
+	}
             
         if (lastStats.height !== stats.height) {
             for(let guild of discord.guilds.array()) {
